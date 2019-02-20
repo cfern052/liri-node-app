@@ -27,8 +27,16 @@ if(call == "spotify-this-song"){
 }
 
 if(call == "movie-this"){
-
-}
+    axios.get("http://www.omdbapi.com/?t="+ input +"&y=&plot=short&tomatoes=true&apikey=trilogy").then(
+        function(response) {
+          console.log(response);  
+          console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");  
+          console.log("Movie title: " + response.data.Title + "\nRelease date: " + response.data.Released + "\nIMDB Rating: " + response.data.imdbRating + "\nRotten Tomatoes: " + response.data.tomatoRating + "\nProduced in : " + response.data.Country + "\nLanguage: " + response.data.Language + "\nPlot: " + response.data.Plot + "\nActors in the film: " + response.data.Actors);
+          console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~");         
+        })
+        };
+    
+    
 
 if(call == "do-what-it-says"){
 
