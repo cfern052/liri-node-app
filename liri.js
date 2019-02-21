@@ -2,17 +2,22 @@ require("dotenv").config();
 var moment = require('moment');
 var spotKey=require('./keys.js');
 moment().format();
-var spotify = require('node-spotify-api');
+var Spotify = require('node-spotify-api');
 var axios = require("axios");
-
+var spotify = new Spotify({
+    id: process.env.SPOTIFY_ID,
+    secret: process.env.SPOTIFY_SECRET
+ });
 var call=process.argv[2];
 var input=process.argv[3];
 
 if(call == "concert-this"){
 axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp")
 .then(function (response){
-// console.log(response);
-console.log("\nArtist: " + input + "\nVenue name: " + response.data.venuedata[1] + "\nVenue location: " + response.data.venuedata[3] + "\nDate: " + response.data.datetime)
+console.log(response);
+console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
+console.log("\nArtist: " + input + "\nVenue name: " + response.data.venue.name + "\nVenue location: " + response.data.venue.city + "\nDate: " + response.data.datetime).format('MMMM Do YYYY, h:mm:ss a');
+console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
 })
 }
 
@@ -21,8 +26,8 @@ if(call == "spotify-this-song"){
         if (err) {
           return console.log('Error occurred: ' + err);
         }
-       
-      console.log(data); 
+       var song=data.tracks.items[0]
+      console.log("Song: " + song.name + "\nPreview URL: " +song.preview_url +"\nArtist: "+ song.artists[0].name + "\nAlbum: " + song.album.name) 
       });
 }
 
