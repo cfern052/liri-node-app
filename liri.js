@@ -22,7 +22,9 @@ console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
 }
 
 if(call == "spotify-this-song"){
-    spotify.search({ type: 'track', query: input }, function(err, data) {
+    for (var i = 2; i < process.argv.length; i++)
+    var track=process.argv[i];
+    spotify.search({ type: 'track', query: track }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
         }
