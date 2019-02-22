@@ -14,8 +14,10 @@ var input=process.argv[3];
 if(call == "concert-this"){
 axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp")
 .then(function (response){
+  for (var i = 2; i < process.argv.length; i++)
+    var artist=process.argv[i];
 console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
-console.log("\nArtist: " + input + "\nVenue name: " + response.data[0].venue.name + "\nVenue location: " + response.data[0].venue.city + "\nDate: " + moment(response.data[0].datetime).format("MM/DD/YY"));
+console.log("\nArtist: " + artist + "\nVenue name: " + response.data[0].venue.name + "\nVenue location: " + response.data[0].venue.city + "\nDate: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
 console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
 })
 }
