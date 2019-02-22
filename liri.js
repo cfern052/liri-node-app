@@ -30,8 +30,10 @@ if(call == "spotify-this-song"){
           return console.log('Error occurred: ' + err);
         }
        var song=data.tracks.items[0]
+      console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
       console.log("Song: " + song.name + "\nPreview URL: " +song.preview_url +"\nArtist: "+ song.artists[0].name + "\nAlbum: " + song.album.name) 
-      });
+      console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
+    });
 }
 
 if(call == "movie-this"){
