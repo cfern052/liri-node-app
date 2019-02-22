@@ -74,12 +74,5 @@ function run(call){
   if(call == "movie-this"){movie()};
   if(call == "do-what-it-says"){doIt()};
 
-
-
-
-
-    
-
-
 }
 run(call);
