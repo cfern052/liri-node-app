@@ -1,7 +1,7 @@
 require("dotenv").config();
 var moment = require('moment');
 var spotKey=require('./keys.js');
-moment().format();
+// moment().format();
 var Spotify = require('node-spotify-api');
 var axios = require("axios");
 var spotify = new Spotify({
@@ -16,7 +16,7 @@ axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codi
 .then(function (response){
 console.log(response);
 console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
-console.log("\nArtist: " + input + "\nVenue name: " + response.data.venue.name + "\nVenue location: " + response.data.venue.city + "\nDate: " + response.data.datetime).format('MMMM Do YYYY, h:mm:ss a');
+console.log("\nArtist: " + input + "\nVenue name: " + response.data[0].venue.name + "\nVenue location: " + response.data[0].venue.city + "\nDate: " + moment(response.data[0].datetime).format("MM/DD/YY"));
 console.log("\n~~~~~~~~~~~~~~~~~~~~~~~~~");
 })
 }
@@ -46,5 +46,5 @@ if(call == "movie-this"){
     
 
 if(call == "do-what-it-says"){
-
+File.readFile("./random.txt");
 }
